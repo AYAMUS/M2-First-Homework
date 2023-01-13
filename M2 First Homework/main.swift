@@ -12,7 +12,7 @@ print("Hello, World!")
 
 import Foundation
 
-/class Client{
+class Client{
     var name: String
     var lastname: String
     var patrinymic: String
@@ -56,18 +56,26 @@ class Bank {
             if c.tern == 3 {
                 c.tern += credit + (credit * Int(0.10))
             }
+            print("\(i.amount), \(i.tern), \(i.repayment)")
         }
     }
-        
         func client(person:Client) {
             for i  in clients {
+                if i.tern == 1 {
                 print((i.repayment ) / (i.tern * 12))
-                print((i.repayment) / (i.tern * 24))
-                print((i.repayment) / (i.tern * 36 ))
+                }
+                if i.tern == 2 {
+                    print((i.repayment) / (i.tern * 24))
+                }
+                if i.tern == 3 {
+                    print((i.repayment) / (i.tern * 36 ))
+                }
+                print(" ФИО клиента - \(i.name) \(i.lastname) \(i.patrinymic),\n Сумма кредита - \(i.amount),\n Срок кредита - \(i.tern),\n Cумма погашения - \(i.repayment).")
             }
         }
     }
-var client = Client(name: "as", lastname: "fd", patrinymic: "fds", amount: 0, tern: 0, repayment: 0)
+
+var client = Client(name: "Pak", lastname: "Jun", patrinymic: "Ho", amount: 78000, tern: 6, repayment: 450)
 var bank = Bank()
 //    bank.clients.append(client)
 bank.clients.append(client)
