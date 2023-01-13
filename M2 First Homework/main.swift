@@ -12,13 +12,7 @@ print("Hello, World!")
 
 import Foundation
 
-//Домашнее задание №1.
-
-//Создать класс Клиент с параметрами имя, фамилия, отчество, сумма кредита, срок кредита, сумма погашения, которая изначально равна 0. Создать класс Банк с параметрами клиенты.
-//Создать внутри класса Банк функцию, рассчитывающая сумму кредита с процентами. Если клиент берет кредит на 1 год, то надбавка 30% (например: хочет взять 100000, то в итоге должен погасить 130000), на 2 - 15%, на 3 - 10%.
-//Функция должна заполнять параметр сумма погашения для каждого клиента и распечататывать всю информацию клиента. Добавить вторую функцию, которая принимает одного клиента в аргументе, эта функция должна достать информацию по сумме погашения и распечатать график погашений по месяцам.
-
-class Client{
+/class Client{
     var name: String
     var lastname: String
     var patrinymic: String
@@ -38,42 +32,44 @@ class Client{
     }
 }
 
-class Bank{
+
+
+class Bank {
     var clients:[Client] = [Client] ()
-    func countCredit(Credit:Double, Srokcredita:Int, tern: Int, repayment: Int) {
-        if Srokcredita == 1 {
-            print(Credit * Double(0.3) + Credit)
-        }
-        if Srokcredita == 2 {
-            print(Credit * Double(0.15) + Credit)
-        }
-        if Srokcredita == 3 {
-            print(Credit * Double(0.10) + Credit)
-        }
+    
+    func countCredit(credit:Int,srokcredita:Int, payement:Int) {
         for i in clients {
             let a = i
-            i.amount += Int(Credit)
-            i.amount += Srokcredita
-            i.repayment += repayment
-            i.tern += tern
-        }
-    }
-        func addClients(add: Client,repayment: Int,tern: Int){
-            for i in clients{
-                let b = i
-                i.repayment += repayment
-                i.tern += tern
-                
-                print("Имя клиента - \(b.name),Сумма погашения кредита - \(b.repayment)")
-                
+            
+            if a.tern == 1 {
+                a.repayment += credit + ( credit * Int(0.3))
+            }
+            
+            a.amount += Int(credit)
+            a.tern  += srokcredita
+            a.repayment += payement
+            let b = i
+            if b.tern == 2 {
+                b.repayment += credit + (credit * Int(0.15))
+            }
+            let c = i
+            if c.tern == 3 {
+                c.tern += credit + (credit * Int(0.10))
             }
         }
     }
-
+        
+        func client(person:Client) {
+            for i  in clients {
+                print((i.repayment ) / (i.tern * 12))
+                print((i.repayment) / (i.tern * 24))
+                print((i.repayment) / (i.tern * 36 ))
+            }
+        }
+    }
+var client = Client(name: "as", lastname: "fd", patrinymic: "fds", amount: 0, tern: 0, repayment: 0)
 var bank = Bank()
-var person = Client(name: "Adam", lastname: "Kim", patrinymic: "Karimovich", amount: 0, tern: 0, repayment: 0)
-bank.clients.append(person)
-bank.countCredit(Credit: 123.20312, Srokcredita: 1, tern: 3,repayment: 120)
-bank.clients.append(person)
-bank.addClients(add: Client(name: "Adam", lastname: "Kim", patrinymic: "Karimovich", amount: 0, tern: 0, repayment: 0), repayment: 0, tern: 7)
-person.showInfo()
+//    bank.clients.append(client)
+bank.clients.append(client)
+bank.client(person: client)
+    bank.countCredit(credit: 1000, srokcredita: 1, payement: 1000)
